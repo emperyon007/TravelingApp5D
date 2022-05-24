@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         txtOut = findViewById(R.id.textViewOut);
 
         queue = Volley.newRequestQueue(this);
-        url = "https://run.mocky.io/v3/704b1e6e-47c3-47bf-9be4-54f704f87d11";
+        url = "https://run.mocky.io/v3/94baa47d-5333-4020-8953-a5915caac7b1";
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         toast.makeText(getApplicationContext(),
                                 "Response: " + response, Toast.LENGTH_LONG).show();
+
+                        try{
+                            JSONObject myJsonObject = new JSONObject(response);
+                            txtOut.setText(myJsonObject.getString("Users"));
+                            //totalRecoveredWorld.setText(myJsonObject.getString("age"));
+                            //totalDeathsWorld.setText(myJsonObject.getString("city"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
